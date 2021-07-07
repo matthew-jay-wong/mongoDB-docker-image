@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  mongodb_container:
+    image: mongo:latest
+    container_name: 'mongo-thotsandprayerscontent'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 'root'
+      MONGO_INITDB_ROOT_PASSWORD: 'rootpassword'
+      MONGO_INITDB_DATABASE: 'thots-and-prayers-content' 
+      MONGO_INITDB_USERNAME: username
+      MONGO_INITDB_PASSWORD: password
+    ports:
+      - '27017-27019:27017-27019'
+    volumes:
+      - ./scripts/initMongo.sh:/docker-entrypoint-initdb.d/initMongo.sh:ro
+      - ./mongo-volume:/data/db
+
+volumes:
+  mongodb_data_container:
